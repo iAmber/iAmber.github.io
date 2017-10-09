@@ -9,13 +9,13 @@
   <title>ES6读书笔记 | Amber&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="let和const 暂时性死区：只要块级作用域内存在let命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响，使用let命令声明变量之前，该变量都是不可用的1234567891011121314if (true) &amp;#123;  // TDZ开始  tmp = &apos;abc&apos;; // ReferenceError  console.log(tmp); // ReferenceE">
-<meta name="keywords" content="ES6,js">
+<meta name="keywords" content="js,ES6">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ES6读书笔记">
 <meta property="og:url" content="https://iamber.github.io/2017/09/29/let/index.html">
 <meta property="og:site_name" content="Amber&#39;s blogs">
 <meta property="og:description" content="let和const 暂时性死区：只要块级作用域内存在let命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响，使用let命令声明变量之前，该变量都是不可用的1234567891011121314if (true) &amp;#123;  // TDZ开始  tmp = &apos;abc&apos;; // ReferenceError  console.log(tmp); // ReferenceE">
-<meta property="og:updated_time" content="2017-09-29T08:40:26.000Z">
+<meta property="og:updated_time" content="2017-10-09T06:50:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6读书笔记">
 <meta name="twitter:description" content="let和const 暂时性死区：只要块级作用域内存在let命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响，使用let命令声明变量之前，该变量都是不可用的1234567891011121314if (true) &amp;#123;  // TDZ开始  tmp = &apos;abc&apos;; // ReferenceError  console.log(tmp); // ReferenceE">
@@ -47,7 +47,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="/assets/profileImg/profile.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="">Amber</a></h1>
@@ -95,7 +95,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="/assets/profileImg/profile.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Amber</h1>
@@ -180,6 +180,10 @@
 </ul>
 <p>常量a是一个数组，这个数组本身是可写的，但是如果将另一个数组赋值给a，就会报错<br>如果想将对象冻结，应该使用<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze" target="_blank" rel="external">Object.freeze()</a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> foo = <span class="built_in">Object</span>.freeze(&#123;&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 常规模式时，下面一行不起作用；</span></div><div class="line"><span class="comment">// 严格模式时，该行会报错</span></div><div class="line">foo.prop = <span class="number">123</span>;</div></pre></td></tr></table></figure></p>
 <p>彻底将对象冻结的函数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> deepFreeze = <span class="function">(<span class="params">obj</span>) =&gt;</span> &#123;</div><div class="line">  <span class="built_in">Object</span>.freeze(obj);</div><div class="line">  <span class="built_in">Object</span>.keys(obj).forEach(<span class="function">(<span class="params">key</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">var</span> prop = obj[key]</div><div class="line">    <span class="keyword">if</span> (prop &amp;&amp; <span class="keyword">typeof</span> prop === <span class="string">'object'</span> ) &#123;</div><div class="line">      deepFreeze(prop)</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;;</div><div class="line"><span class="comment">// Object.keys不包含对象不可枚举属性，完整版本</span></div><div class="line"><span class="keyword">var</span> deepFreeze = (obj) &#123;</div><div class="line">  <span class="built_in">Object</span>.freeze(obj)</div><div class="line">  <span class="keyword">var</span> propNames = <span class="built_in">Object</span>.getOwnPropertyNames(obj)</div><div class="line">  propNames.forEach(<span class="function">(<span class="params">key</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">var</span> prop = obj[key]</div><div class="line">    <span class="keyword">if</span> (prop &amp;&amp; <span class="keyword">typeof</span> prop === <span class="string">'object'</span> ) &#123;</div><div class="line">      deepFreeze(prop)</div><div class="line">    &#125;</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="变量的解构赋值"><a href="#变量的解构赋值" class="headerlink" title="变量的解构赋值"></a>变量的解构赋值</h3><p>注意⚠️⚠️<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">5</span>);</div><div class="line"></div><div class="line">arr[<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">arr[<span class="number">4</span>] = <span class="number">5</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">iteration</span>(<span class="params">item = <span class="number">2</span>, index = <span class="number">1</span></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> item * index;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> result = arr.map(iteration) <span class="comment">// [0,undefined,undefined,undefined,20]</span></div></pre></td></tr></table></figure></p>
+<h3 id="函数的扩展"><a href="#函数的扩展" class="headerlink" title="函数的扩展"></a>函数的扩展</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">&#123;x, y = <span class="number">5</span>&#125;</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(x, y);</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo(&#123;&#125;) <span class="comment">// undefined 5</span></div><div class="line">foo(&#123;<span class="attr">x</span>: <span class="number">1</span>&#125;) <span class="comment">// 1 5</span></div><div class="line">foo(&#123;<span class="attr">x</span>: <span class="number">1</span>, <span class="attr">y</span>: <span class="number">2</span>&#125;) <span class="comment">// 1 2</span></div><div class="line">foo() <span class="comment">// TypeError: Cannot read property 'x' of undefined</span></div></pre></td></tr></table></figure>
+<p>如上图，只用了对象的解构赋值，即只有函数参数为对象时，x y才通过解构赋值生成，当参数不是对象时就会报错，改进代码如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">&#123;x, y = <span class="number">5</span>&#125; = &#123;&#125;</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(x, y);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>函数参数默认值的两种写法与对比</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">m1</span>(<span class="params">&#123;x = <span class="number">0</span>, y = <span class="number">0</span>&#125; = &#123;&#125;</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(x,y)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">m2</span>(<span class="params">&#123;x, y&#125; = &#123;x = <span class="number">0</span>, y = <span class="number">0</span>&#125;</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(x,y)</div><div class="line">&#125;</div><div class="line"><span class="comment">// 函数没有参数的情况</span></div><div class="line">m1() <span class="comment">// [0, 0]</span></div><div class="line">m2() <span class="comment">// [0, 0]</span></div><div class="line"></div><div class="line"><span class="comment">// x 和 y 都有值的情况</span></div><div class="line">m1(&#123;<span class="attr">x</span>: <span class="number">3</span>, <span class="attr">y</span>: <span class="number">8</span>&#125;) <span class="comment">// [3, 8]</span></div><div class="line">m2(&#123;<span class="attr">x</span>: <span class="number">3</span>, <span class="attr">y</span>: <span class="number">8</span>&#125;) <span class="comment">// [3, 8]</span></div><div class="line"></div><div class="line"><span class="comment">// x 有值，y 无值的情况</span></div><div class="line">m1(&#123;<span class="attr">x</span>: <span class="number">3</span>&#125;) <span class="comment">// [3, 0]</span></div><div class="line">m2(&#123;<span class="attr">x</span>: <span class="number">3</span>&#125;) <span class="comment">// [3, undefined]</span></div><div class="line"></div><div class="line"><span class="comment">// x 和 y 都无值的情况</span></div><div class="line">m1(&#123;&#125;) <span class="comment">// [0, 0];</span></div><div class="line">m2(&#123;&#125;) <span class="comment">// [undefined, undefined]</span></div><div class="line"></div><div class="line">m1(&#123;<span class="attr">z</span>: <span class="number">3</span>&#125;) <span class="comment">// [0, 0]</span></div><div class="line">m2(&#123;<span class="attr">z</span>: <span class="number">3</span>&#125;) <span class="comment">// [undefined, undefined]</span></div></pre></td></tr></table></figure></p>
 
       
 
@@ -193,11 +197,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES6</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES6</a>
         		</li>
       		
 		</ul>
@@ -421,11 +425,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
             
             <div class="clearfix"></div>
