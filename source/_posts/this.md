@@ -42,6 +42,9 @@ var o = {a: 37, f: f, g: g, h: h};
 console.log(o.f(), o.g(), o.h()); // 37, azerty, azerty
 ```
 ### bind call apply三者的异同
+- call,apply,bind都是要改变函数执行上下文，也就是this的值
+- call,apply都是直接执行函数，**bind不会执行原函数，只是返回了一个修改了上下文的函数副本**
+- **call()方法接受的是若干个参数的列表，而apply()方法接受的是一个包含多个参数的数组**
 ### 如何实现bind
 ```javascript
 function.prototype.bind = function() {
