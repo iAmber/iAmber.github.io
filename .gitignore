@@ -3,3 +3,5 @@ public/*
 themes/*
 .idea/*
 .deploy_git/
+public/*
+db.json
