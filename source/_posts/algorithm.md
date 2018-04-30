@@ -27,4 +27,8 @@ bubbleSort(oriArr)
 - 快速排序
 选取基准数，将大于基准数的放在右边，小于基准数的放在左边，每趟将这一轮的基准数归位
 对左右区间重复操作，直到各区间只剩一个数
-
+```javascript
+function quickSort(arr) {
+  
+}
+```
