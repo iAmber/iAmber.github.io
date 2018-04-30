@@ -31,4 +31,5 @@ bubbleSort(oriArr)
 function quickSort(arr) {
   
 }
+quickSort()
 ```
