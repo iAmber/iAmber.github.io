@@ -34,8 +34,8 @@ function quickSort(arr) {
 quickSort()
 ```
 ### 队列 FIFO
-删除第一个元素，将下一个元素插入队尾，按照删除顺序打印数组
 ```javascript
+// 删除第一个元素，将下一个元素插入队尾，按照删除顺序打印数组
 const oriArr = [6, 3, 1, 7, 5, 8, 9, 2, 4]
 let res = []
 function queue(arr) {

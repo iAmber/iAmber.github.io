@@ -3,7 +3,6 @@ title: ES6读书笔记(一)
 tags: 
   - ES6
   - js
-  - js
 date: 2017-09-29
 ---
 ### let和const
