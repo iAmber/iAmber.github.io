@@ -1,6 +1,6 @@
 ---
 title: algorithm
-tags: tags
+tags: algorithm
 date: 2018-04-29 10:37:33
 ---
 ### 排序
