@@ -8,19 +8,17 @@
   <link rel="dns-prefetch" href="https://iamber.github.io">
   <title>algorithm | Amber&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="排序 冒泡排序  每次比较两个相邻的元素，错误就交换，每一趟只能确定一个数归位，n个数需要n-1趟时间复杂度O(n²)123456789101112131415// 升序const oriArr = [12, 35, 99, 18, 5]const length = oriArr.length;function bubbleSort(arr) &amp;#123;  oriArr.forEach(() =">
+  <meta name="description" content="排序 冒泡排序每次比较两个相邻的元素，错误就交换，每一趟只能确定一个数归位，n个数需要n-1趟时间复杂度O(n²)123456789101112131415// 升序const oriArr = [12, 35, 99, 18, 5]const length = oriArr.length;function bubbleSort(arr) &amp;#123;  oriArr.forEach(() =&amp;g">
 <meta name="keywords" content="algorithm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="algorithm">
 <meta property="og:url" content="https://iamber.github.io/2018/04/29/algorithm/index.html">
 <meta property="og:site_name" content="Amber&#39;s blogs">
-<meta property="og:description" content="排序 冒泡排序  每次比较两个相邻的元素，错误就交换，每一趟只能确定一个数归位，n个数需要n-1趟时间复杂度O(n²)123456789101112131415// 升序const oriArr = [12, 35, 99, 18, 5]const length = oriArr.length;function bubbleSort(arr) &amp;#123;  oriArr.forEach(() =">
-<meta property="og:image" content="https://iamber.github.io/2018/04/29/assets/blogImg/three-handing.png">
-<meta property="og:updated_time" content="2018-05-28T09:06:12.000Z">
+<meta property="og:description" content="排序 冒泡排序每次比较两个相邻的元素，错误就交换，每一趟只能确定一个数归位，n个数需要n-1趟时间复杂度O(n²)123456789101112131415// 升序const oriArr = [12, 35, 99, 18, 5]const length = oriArr.length;function bubbleSort(arr) &amp;#123;  oriArr.forEach(() =&amp;g">
+<meta property="og:updated_time" content="2018-05-28T09:13:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="algorithm">
-<meta name="twitter:description" content="排序 冒泡排序  每次比较两个相邻的元素，错误就交换，每一趟只能确定一个数归位，n个数需要n-1趟时间复杂度O(n²)123456789101112131415// 升序const oriArr = [12, 35, 99, 18, 5]const length = oriArr.length;function bubbleSort(arr) &amp;#123;  oriArr.forEach(() =">
-<meta name="twitter:image" content="https://iamber.github.io/2018/04/29/assets/blogImg/three-handing.png">
+<meta name="twitter:description" content="排序 冒泡排序每次比较两个相邻的元素，错误就交换，每一趟只能确定一个数归位，n个数需要n-1趟时间复杂度O(n²)123456789101112131415// 升序const oriArr = [12, 35, 99, 18, 5]const length = oriArr.length;function bubbleSort(arr) &amp;#123;  oriArr.forEach(() =&amp;g">
   
     <link rel="alternative" href="/atom.xml" title="Amber&#39;s blogs" type="application/atom+xml">
   
@@ -163,9 +161,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><ul>
-<li>冒泡排序<br><img src="../assets/blogImg/three-handing.png" alt="three-handing"></li>
+<li>冒泡排序<br>每次比较两个相邻的元素，错误就交换，每一趟只能确定一个数归位，n个数需要n-1趟<br>时间复杂度O(n²)<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 升序</span></div><div class="line"><span class="keyword">const</span> oriArr = [<span class="number">12</span>, <span class="number">35</span>, <span class="number">99</span>, <span class="number">18</span>, <span class="number">5</span>]</div><div class="line"><span class="keyword">const</span> length = oriArr.length;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">  oriArr.forEach(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; length - <span class="number">1</span>; i++) &#123;</div><div class="line">      <span class="keyword">let</span> curItem = oriArr[i]</div><div class="line">      <span class="keyword">let</span> compareItem = oriArr[i + <span class="number">1</span>]</div><div class="line">      <span class="keyword">if</span> (curItem &gt; compareItem) &#123;</div><div class="line">        [oriArr[i], oriArr[i + <span class="number">1</span>]] = [compareItem, curItem] <span class="comment">// exchange</span></div><div class="line">      &#125;</div><div class="line">    &#125;  </div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line">bubbleSort(oriArr)</div></pre></td></tr></table></figure>
+</li>
 </ul>
-<p>每次比较两个相邻的元素，错误就交换，每一趟只能确定一个数归位，n个数需要n-1趟<br>时间复杂度O(n²)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 升序</span></div><div class="line"><span class="keyword">const</span> oriArr = [<span class="number">12</span>, <span class="number">35</span>, <span class="number">99</span>, <span class="number">18</span>, <span class="number">5</span>]</div><div class="line"><span class="keyword">const</span> length = oriArr.length;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">  oriArr.forEach(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; length - <span class="number">1</span>; i++) &#123;</div><div class="line">      <span class="keyword">let</span> curItem = oriArr[i]</div><div class="line">      <span class="keyword">let</span> compareItem = oriArr[i + <span class="number">1</span>]</div><div class="line">      <span class="keyword">if</span> (curItem &gt; compareItem) &#123;</div><div class="line">        [oriArr[i], oriArr[i + <span class="number">1</span>]] = [compareItem, curItem] <span class="comment">// exchange</span></div><div class="line">      &#125;</div><div class="line">    &#125;  </div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line">bubbleSort(oriArr)</div></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <ul>
 <li>快速排序<br>选取基准数，将大于基准数的放在右边，小于基准数的放在左边，每趟将这一轮的基准数归位<br>对左右区间重复操作，直到各区间只剩一个数<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">const</span> oriArr = [<span class="number">6</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">8</span>]</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">quickArr, left, right</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'start'</span>, left, right)</div><div class="line">  <span class="keyword">let</span> base = quickArr[left]</div><div class="line">  <span class="keyword">let</span> baseIndex = left</div><div class="line">  <span class="keyword">let</span> i = left</div><div class="line">  <span class="keyword">let</span> j = right</div><div class="line">  <span class="keyword">if</span> (i &gt;= j) &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'ending'</span>, quickArr)</div><div class="line">    <span class="keyword">return</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">while</span>(i &lt; j) &#123;</div><div class="line">    <span class="keyword">while</span>(i &lt; j &amp;&amp; quickArr[j] &gt;= base) &#123;</div><div class="line">      j-- <span class="comment">// forward</span></div><div class="line">    &#125;</div><div class="line">    [quickArr[j], quickArr[baseIndex]] = [base, quickArr[j]]</div><div class="line">    baseIndex = j</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'after exchange'</span>, quickArr)</div><div class="line">    <span class="keyword">while</span> (i &lt; j &amp;&amp; quickArr[i] &lt;= base) &#123;</div><div class="line">      i++</div><div class="line">    &#125;</div><div class="line">    [quickArr[i], quickArr[baseIndex]] = [base, quickArr[i]]</div><div class="line">    baseIndex = i</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'after exchange'</span>, quickArr)</div><div class="line">  &#125;</div><div class="line">  quickSort(quickArr, left, baseIndex <span class="number">-1</span>)</div><div class="line">  quickSort(quickArr, baseIndex + <span class="number">1</span>, right)</div><div class="line">&#125;</div><div class="line">quickSort(oriArr, <span class="number">0</span>, oriArr.length - <span class="number">1</span>)</div></pre></td></tr></table></figure>
@@ -255,11 +253,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/05/03/fe/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/05/04/webview/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          JS
+          小程序webview调研与Map组件
         
       </div>
     </a>
@@ -392,11 +390,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -404,7 +402,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
