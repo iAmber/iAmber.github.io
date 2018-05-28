@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://iamber.github.io">
-  <title>Tag: http | Amber&#39;s blogs</title>
+  <title>小程序webview调研与Map组件 | Amber&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Amber&#39;s blogs">
-<meta property="og:url" content="https://iamber.github.io/tags/http/index.html">
+  <meta name="description" content="webview 官方文档 使用 123&amp;lt;!-- wxml --&amp;gt;&amp;lt;!-- 指向微信公众平台首页的web-view --&amp;gt;&amp;lt;web-view src=&quot;https://mp.weixin.qq.com/&quot; bindmessage=&quot;handleMsg&quot;&amp;gt;&amp;lt;/web-view&amp;gt;  通信小程序 =&amp;gt; webview: 配置webview的src给ur">
+<meta name="keywords" content="miniProgram,webview">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小程序webview调研与Map组件">
+<meta property="og:url" content="https://iamber.github.io/2018/05/04/webview/index.html">
 <meta property="og:site_name" content="Amber&#39;s blogs">
+<meta property="og:description" content="webview 官方文档 使用 123&amp;lt;!-- wxml --&amp;gt;&amp;lt;!-- 指向微信公众平台首页的web-view --&amp;gt;&amp;lt;web-view src=&quot;https://mp.weixin.qq.com/&quot; bindmessage=&quot;handleMsg&quot;&amp;gt;&amp;lt;/web-view&amp;gt;  通信小程序 =&amp;gt; webview: 配置webview的src给ur">
+<meta property="og:updated_time" content="2018-05-04T08:30:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Amber&#39;s blogs">
+<meta name="twitter:title" content="小程序webview调研与Map组件">
+<meta name="twitter:description" content="webview 官方文档 使用 123&amp;lt;!-- wxml --&amp;gt;&amp;lt;!-- 指向微信公众平台首页的web-view --&amp;gt;&amp;lt;web-view src=&quot;https://mp.weixin.qq.com/&quot; bindmessage=&quot;handleMsg&quot;&amp;gt;&amp;lt;/web-view&amp;gt;  通信小程序 =&amp;gt; webview: 配置webview的src给ur">
   
     <link rel="alternative" href="/atom.xml" title="Amber&#39;s blogs" type="application/atom+xml">
   
@@ -135,60 +140,185 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-webview" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/29/http/" class="archive-article-date">
-  	<time datetime="2017-04-28T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-29</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/29/http/">图解http</a>
+    <h1 class="article-title" itemprop="name">
+      小程序webview调研与Map组件
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/05/04/webview/" class="archive-article-date">
+  	<time datetime="2018-05-04T06:41:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="webview"><a href="#webview" class="headerlink" title="webview"></a>webview</h3><ul>
+<li><a href="https://developers.weixin.qq.com/miniprogram/dev/component/web-view.html" target="_blank" rel="external">官方文档</a></li>
+<li><p>使用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- wxml --&gt;</span></div><div class="line"><span class="comment">&lt;!-- 指向微信公众平台首页的web-view --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">web-view</span> <span class="attr">src</span>=<span class="string">"https://mp.weixin.qq.com/"</span> <span class="attr">bindmessage</span>=<span class="string">"handleMsg"</span>&gt;</span><span class="tag">&lt;/<span class="name">web-view</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>通信<br>小程序 =&gt; webview: 配置webview的src给url加参数即可<br>webview =&gt; 小程序: wx.miniProgram.postMessage</p>
+<a id="more"></a>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">网页向小程序 postMessage 时，会在特定时机（小程序后退、组件销毁、分享）触发并收到消息。e.detail = &#123; data &#125;</div><div class="line"><span class="section">小程序后退: navigateBack</span></div><div class="line"><span class="section">组件销毁: redirectTo reLaunch</span></div><div class="line"><span class="section">分享:</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>优劣讨论 </p>
+<ul>
+<li>自由度高</li>
+<li>无法实时通信 </li>
+</ul>
+</li>
+</ul>
+<h3 id="原生Map组件"><a href="#原生Map组件" class="headerlink" title="原生Map组件"></a>原生Map组件</h3><ul>
+<li><a href="https://developers.weixin.qq.com/miniprogram/dev/component/map.html#map" target="_blank" rel="external">官方文档</a></li>
+<li>优劣分析<ul>
+<li>地图事件不够细化，视野变化事件无法区分事件来源（修改地图中心点、手指双击缩放、拖拽地图）</li>
+<li>自由度不高，对于marker control等地图组件只能修改官方提供的属性</li>
+<li>地图原生组件层级最高，覆盖在地图上的需求必须包含在地图本身内</li>
+<li>地图元素层级无法控制</li>
+<li>动画限制：css 动画对 map 组件无效，体验生硬</li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">miniProgram</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webview</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://iamber.github.io/2018/05/04/webview/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/05/14/webworker/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          webworker
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2018/05/03/fe/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JS</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -211,9 +341,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

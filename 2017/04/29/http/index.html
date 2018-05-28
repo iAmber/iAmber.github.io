@@ -15,10 +15,13 @@
 <meta property="og:url" content="https://iamber.github.io/2017/04/29/http/index.html">
 <meta property="og:site_name" content="Amber&#39;s blogs">
 <meta property="og:description" content="Http与Https的对比 http通信使用明文，内容可能被窃听 不验证通信方的身份，有可能遭到伪装 无法验证明文的完整性，可能已经遭到篡改  Https=加密+认证+完整性保护  网络基础TCP/IP协议 把与互联网相关的协议集合起来的总称 应用层（FTP、DNS、HTTP）、传输层（TCP、UDP）、网络层（IP）、数据链路层 数据传输时候的封装 IP协议：负责传输，IP地址和MAC地址（AR">
-<meta property="og:updated_time" content="2018-01-02T06:55:15.000Z">
+<meta property="og:image" content="https://iamber.github.io/2017/04/29/assets/blogImg/three-handing.png">
+<meta property="og:image" content="https://iamber.github.io/2017/04/29/assets/blogImg/four-handing.png">
+<meta property="og:updated_time" content="2018-05-28T09:03:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图解http">
 <meta name="twitter:description" content="Http与Https的对比 http通信使用明文，内容可能被窃听 不验证通信方的身份，有可能遭到伪装 无法验证明文的完整性，可能已经遭到篡改  Https=加密+认证+完整性保护  网络基础TCP/IP协议 把与互联网相关的协议集合起来的总称 应用层（FTP、DNS、HTTP）、传输层（TCP、UDP）、网络层（IP）、数据链路层 数据传输时候的封装 IP协议：负责传输，IP地址和MAC地址（AR">
+<meta name="twitter:image" content="https://iamber.github.io/2017/04/29/assets/blogImg/three-handing.png">
   
     <link rel="alternative" href="/atom.xml" title="Amber&#39;s blogs" type="application/atom+xml">
   
@@ -172,11 +175,18 @@
 <li>应用层（FTP、DNS、HTTP）、传输层（TCP、UDP）、网络层（IP）、数据链路层</li>
 <li>数据传输时候的封装</li>
 <li>IP协议：负责传输，IP地址和MAC地址（ARP协议：解析地址）</li>
-<li>TCP三次握手<ul>
+<li><p>TCP三次握手</p>
+<ul>
 <li>Client发送带有SYN标志的数据包给对方</li>
 <li>接收端收到并回传一个STYN／ACK标志的数据包</li>
-<li>Client最后回传一个ACK的数据包，表示握手结束</li>
+<li>Client最后回传一个ACK的数据包，表示握手结束<br><img src="../assets/blogImg/three-handing.png" alt="three-handing"></li>
 </ul>
+</li>
+<li><p>为什么TCP客户端最后还要发送一次确认呢？<br>一句话，主要防止已经失效的连接请求报文突然又传送到了服务器，从而产生错误。</p>
+<p>如果使用的是两次握手建立连接，假设有这样一种场景，客户端发送了第一个请求连接并且没有丢失，只是因为在网络结点中滞留的时间太长了，由于TCP的客户端迟迟没有收到确认报文，以为服务器没有收到，此时重新向服务器发送这条报文，此后客户端和服务器经过两次握手完成连接，传输数据，然后关闭连接。此时此前滞留的那一次请求连接，网络通畅了到达了服务器，这个报文本该是失效的，但是，两次握手的机制将会让客户端和服务器再次建立连接，这将导致不必要的错误和资源的浪费。</p>
+<p>如果采用的是三次握手，就算是那一次失效的报文传送过来了，服务端接受到了那条失效报文并且回复了确认报文，但是客户端不会再次发出确认。由于服务器收不到确认，就知道客户端并没有请求连接。</p>
+</li>
+<li><p>TCP四次挥手<br><a href="https://blog.csdn.net/qzcsu/article/details/72861891" target="_blank" rel="external">解释</a><br><img src="../assets/blogImg/four-handing.png" alt="four-handing"></p>
 </li>
 <li>URL：uniform resource location 统一资源定位符</li>
 <li>URI：uniform resource identifier 统一资源标识</li>
@@ -562,7 +572,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tags</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -570,7 +588,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">miniProgram</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">webview</a>
               </li>
             
             <div class="clearfix"></div>

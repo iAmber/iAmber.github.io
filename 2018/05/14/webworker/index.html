@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://iamber.github.io">
-  <title>Tag: http | Amber&#39;s blogs</title>
+  <title>webworker | Amber&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Amber&#39;s blogs">
-<meta property="og:url" content="https://iamber.github.io/tags/http/index.html">
+  <meta name="description" content="如何理解Js的单线程  所有同步任务都在主线程上执行，形成一个执行栈（execution context stack）。 主线程之外，还存在一个”任务队列”（task queue）。只要异步任务有了运行结果，就在”任务队列”之中放置一个事件。 一旦”执行栈”中的所有同步任务执行完毕，系统就会读取”任务队列”，看看里面有哪些事件。那些对应的异步任务，于是结束等待状态，进入执行栈，开始执行。 主线程不">
+<meta name="keywords" content="tags">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webworker">
+<meta property="og:url" content="https://iamber.github.io/2018/05/14/webworker/index.html">
 <meta property="og:site_name" content="Amber&#39;s blogs">
+<meta property="og:description" content="如何理解Js的单线程  所有同步任务都在主线程上执行，形成一个执行栈（execution context stack）。 主线程之外，还存在一个”任务队列”（task queue）。只要异步任务有了运行结果，就在”任务队列”之中放置一个事件。 一旦”执行栈”中的所有同步任务执行完毕，系统就会读取”任务队列”，看看里面有哪些事件。那些对应的异步任务，于是结束等待状态，进入执行栈，开始执行。 主线程不">
+<meta property="og:image" content="https://iamber.github.io/2018/05/14/assets/blogImg/eventloop.png">
+<meta property="og:updated_time" content="2018-05-24T12:09:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Amber&#39;s blogs">
+<meta name="twitter:title" content="webworker">
+<meta name="twitter:description" content="如何理解Js的单线程  所有同步任务都在主线程上执行，形成一个执行栈（execution context stack）。 主线程之外，还存在一个”任务队列”（task queue）。只要异步任务有了运行结果，就在”任务队列”之中放置一个事件。 一旦”执行栈”中的所有同步任务执行完毕，系统就会读取”任务队列”，看看里面有哪些事件。那些对应的异步任务，于是结束等待状态，进入执行栈，开始执行。 主线程不">
+<meta name="twitter:image" content="https://iamber.github.io/2018/05/14/assets/blogImg/eventloop.png">
   
     <link rel="alternative" href="/atom.xml" title="Amber&#39;s blogs" type="application/atom+xml">
   
@@ -135,60 +142,167 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-webworker" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/29/http/" class="archive-article-date">
-  	<time datetime="2017-04-28T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-29</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/29/http/">图解http</a>
+    <h1 class="article-title" itemprop="name">
+      webworker
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/05/14/webworker/" class="archive-article-date">
+  	<time datetime="2018-05-14T02:44:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="如何理解Js的单线程"><a href="#如何理解Js的单线程" class="headerlink" title="如何理解Js的单线程"></a>如何理解Js的单线程</h3><p><img src="../assets/blogImg/eventloop.png" alt="Event Loop"></p>
+<ol>
+<li>所有同步任务都在主线程上执行，形成一个执行栈（execution context stack）。</li>
+<li>主线程之外，还存在一个”任务队列”（task queue）。只要异步任务有了运行结果，就在”任务队列”之中放置一个事件。</li>
+<li>一旦”执行栈”中的所有同步任务执行完毕，系统就会读取”任务队列”，看看里面有哪些事件。那些对应的异步任务，于是结束等待状态，进入执行栈，开始执行。</li>
+<li>主线程不断重复上面的第三步。<h3 id="Event-Loop"><a href="#Event-Loop" class="headerlink" title="Event Loop"></a>Event Loop</h3><h3 id="MicroTasks"><a href="#MicroTasks" class="headerlink" title="MicroTasks"></a>MicroTasks</h3><ul>
+<li>process.nextTick</li>
+<li>promise</li>
+<li>Object.observe<h3 id="Macrotasks"><a href="#Macrotasks" class="headerlink" title="Macrotasks"></a>Macrotasks</h3></li>
+<li>setTimeout</li>
+<li>setInterval</li>
+<li>setImmediate</li>
+<li>I/O</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">'start'</span>)</div><div class="line"></div><div class="line"><span class="keyword">const</span> interval = setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;  </div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'setInterval'</span>)</div><div class="line">&#125;, <span class="number">0</span>)</div><div class="line"></div><div class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;  </div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'setTimeout 1'</span>)</div><div class="line">  <span class="built_in">Promise</span>.resolve()</div><div class="line">    .then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'promise 3'</span>)</div><div class="line">    &#125;)</div><div class="line">    .then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'promise 4'</span>)</div><div class="line">    &#125;)</div><div class="line">    .then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">      setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'setTimeout 2'</span>)</div><div class="line">      <span class="built_in">Promise</span>.resolve()</div><div class="line">        .then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">          <span class="built_in">console</span>.log(<span class="string">'promise 5'</span>)</div><div class="line">        &#125;)</div><div class="line">        .then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">          <span class="built_in">console</span>.log(<span class="string">'promise 6'</span>)</div><div class="line">        &#125;)</div><div class="line">        .then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">          clearInterval(interval)</div><div class="line">        &#125;)</div><div class="line">      &#125;, <span class="number">0</span>)</div><div class="line">    &#125;)</div><div class="line">&#125;, <span class="number">0</span>)</div><div class="line"></div><div class="line"><span class="built_in">Promise</span>.resolve()</div><div class="line">  .then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;  </div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'promise 1'</span>)</div><div class="line">  &#125;)</div><div class="line">  .then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'promise 2'</span>)</div><div class="line">  &#125;)</div><div class="line">  </div><div class="line"><span class="comment">// result </span></div><div class="line">start</div><div class="line">promise <span class="number">1</span></div><div class="line">promise <span class="number">2</span></div><div class="line">setInterval</div><div class="line">setTimeout <span class="number">1</span></div><div class="line">promise <span class="number">3</span></div><div class="line">promise <span class="number">4</span></div><div class="line">setInterval</div><div class="line">setTimeout <span class="number">2</span></div><div class="line">promise <span class="number">5</span></div><div class="line">promise <span class="number">6</span></div></pre></td></tr></table></figure>
+<p>chrome 66.0.3359.181 测试第二个setInterval会打印两次</p>
+<h3 id="WebWorker"><a href="#WebWorker" class="headerlink" title="WebWorker"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Workers_API/Using_web_workers" target="_blank" rel="external">WebWorker</a></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> myWorker = <span class="keyword">new</span> Worker(<span class="string">'worker.js'</span>);</div></pre></td></tr></table></figure>
+<ul>
+<li>workers run in another global context that is different from the current window.</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tags</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://iamber.github.io/2018/05/14/webworker/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/05/04/webview/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">小程序webview调研与Map组件</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -211,9 +325,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
