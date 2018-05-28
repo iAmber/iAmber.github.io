@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Amber&#39;s blogs">
 <meta property="og:description" content="rem flexible均分100份：例如750px，750px=100a 1rem=10a=75pxJs ModuleJavaScript 模块化七日谈前端模块开发JavaSript模块化 CommonJsnodeJS遵循CommonJS定义的模块分为:{模块引用(require)} {模块定义(exports)} {模块标识(module)}require()用来引入外部模块；exports对">
 <meta property="og:image" content="https://iamber.github.io/2017/01/03/assets/blogImg/script.jpeg">
-<meta property="og:updated_time" content="2018-05-28T09:13:31.000Z">
+<meta property="og:updated_time" content="2018-05-28T09:14:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS">
 <meta name="twitter:description" content="rem flexible均分100份：例如750px，750px=100a 1rem=10a=75pxJs ModuleJavaScript 模块化七日谈前端模块开发JavaSript模块化 CommonJsnodeJS遵循CommonJS定义的模块分为:{模块引用(require)} {模块定义(exports)} {模块标识(module)}require()用来引入外部模块；exports对">
@@ -173,8 +173,10 @@
 <li><p>CMD(Common Moudle Definition) <strong>Early Download, Lazy Executing</strong><br>SeaJS 对模块定义的规范化产出</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// CMD recommanded</span></div><div class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>)</span>&#123;</div><div class="line">  <span class="comment">// 之前只是module ready，require的时候执行</span></div><div class="line">  <span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">"a"</span>);</div><div class="line">  a.doSomething();</div><div class="line">  <span class="keyword">var</span> b = <span class="built_in">require</span>(<span class="string">"b"</span>);</div><div class="line">  b.doSomething();    <span class="comment">// 依赖就近，延迟执行</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 </li>
-<li><p>AMD与CMD区别</p>
-<ol>
+</ul>
+<a id="more"></a>
+<ul>
+<li>AMD与CMD区别<ol>
 <li>就近原则</li>
 <li>执行时间</li>
 </ol>
@@ -467,19 +469,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tags</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
