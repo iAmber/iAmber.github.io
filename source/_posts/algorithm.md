@@ -10,7 +10,7 @@ date: 2018-04-29 10:37:33
 ```javascript
 // 升序
 const oriArr = [12, 35, 99, 18, 5]
-const length  = oriArr.length
+const length = oriArr.length;
 function bubbleSort(arr) {
   oriArr.forEach(() => {
     for (let i = 0; i < length - 1; i++) {
@@ -29,10 +29,36 @@ bubbleSort(oriArr)
 选取基准数，将大于基准数的放在右边，小于基准数的放在左边，每趟将这一轮的基准数归位
 对左右区间重复操作，直到各区间只剩一个数
 ```javascript
-function quickSort(arr) {
-  
+
+const oriArr = [6, 1, 2, 7, 9, 3, 4, 5, 10, 8]
+function quickSort(quickArr, left, right) {
+  console.log('start', left, right)
+  let base = quickArr[left]
+  let baseIndex = left
+  let i = left
+  let j = right
+  if (i >= j) {
+    console.log('ending', quickArr)
+    return
+  }
+  while(i < j) {
+    while(i < j && quickArr[j] >= base) {
+      j-- // forward
+    }
+    [quickArr[j], quickArr[baseIndex]] = [base, quickArr[j]]
+    baseIndex = j
+    console.log('after exchange', quickArr)
+    while (i < j && quickArr[i] <= base) {
+      i++
+    }
+    [quickArr[i], quickArr[baseIndex]] = [base, quickArr[i]]
+    baseIndex = i
+    console.log('after exchange', quickArr)
+  }
+  quickSort(quickArr, left, baseIndex -1)
+  quickSort(quickArr, baseIndex + 1, right)
 }
-quickSort()
+quickSort(oriArr, 0, oriArr.length - 1)
 ```
 ### 队列 FIFO
 ```javascript
